@@ -1,0 +1,35 @@
+CREATE TABLE celebs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    role TEXT);
+    
+INSERT INTO celebs (fullname, role) VALUES ("James Cameron", "Director");
+INSERT INTO celebs (fullname, role) VALUES ("Arnold S", "Actor");
+INSERT INTO celebs (fullname, role) VALUES ("Bruce Willis", "Actor");
+INSERT INTO celebs (fullname, role) VALUES ("Brad Pitt", "Actor");
+INSERT INTO celebs (fullname, role) VALUES ("Angelina J.", "Actress");
+CREATE table movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+    
+INSERT INTO movies (person_id, name) VALUES (1, "Terminator");
+INSERT INTO movies (person_id, name) VALUES (1, "Avatar");
+INSERT INTO movies (person_id, name) VALUES (2, "Terminator");
+INSERT INTO movies (person_id, name) VALUES (2, "Commando");
+INSERT INTO movies (person_id, name) VALUES (3, "Fight Club");
+INSERT INTO movies (person_id, name) VALUES (4, "Mr. and Mrs. Smith");
+INSERT INTO movies (person_id, name) VALUES (5, "Mr. and Mrs. Smith");
+INSERT INTO movies (person_id, name) VALUES (5, "Maleficent");
+
+CREATE table relation (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+
+INSERT INTO relation (person1_id, person2_id)
+    VALUES (1, 2);
+INSERT INTO relation (person1_id, person2_id)
+    VALUES (4, 5);
+SELECT celebs.fullname, movies.name FROM celebs LEFT OUTER JOIN movies ON movies.person_id = celebs.id;
+SELECT a.fullname, b.fullname FROM relation JOIN celebs a ON relation.person1_id = a.id JOIN celebs b ON relation.person2_id = b.id;
